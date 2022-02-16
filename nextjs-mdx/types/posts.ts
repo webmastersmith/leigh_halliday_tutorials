@@ -4,9 +4,9 @@ export interface Post {
   title: string
   tags: string[]
   date: string
-  code: string
+  compiledSource: string
   id: string
-  content: string
+  content?: string
 }
 
 export interface PostType {

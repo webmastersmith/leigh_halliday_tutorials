@@ -1,7 +1,7 @@
 import path from 'path'
 import { bundleMDX } from 'mdx-bundler'
 import { Post } from 'types'
-import { uuid } from './util'
+import { uuid } from '../utils/util'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import rehypeHighlight from 'rehype-highlight'
@@ -36,6 +36,7 @@ export const getMdxBundle = async (slug: string) => {
     rehypeHighlight,
   ]
 
+  // const source = fs.readFileSync(path.join(POSTS_PATH, `${slug}.mdx`), 'utf-8')
   try {
     const post = await bundleMDX({
       file: path.join(POSTS_PATH, `${slug}.mdx`),
@@ -52,7 +53,9 @@ export const getMdxBundle = async (slug: string) => {
         return options
       },
     })
+
     const { title, tags, date, excerpt } = post.frontmatter as Post
+
     return {
       title: title ?? slug,
       date: date ?? new Date().toISOString().split('T')[0],

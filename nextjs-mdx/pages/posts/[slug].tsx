@@ -1,9 +1,10 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from 'next'
-import Image from 'next/image'
 import Head from 'next/head'
-import { MdxComponent, YouTube } from 'components'
 import { PostType } from 'types'
-import { getAllFileNames, getMdxBundle } from 'utils'
+import { getAllFileNames, getPost } from 'utils'
+import { MDX } from 'components'
+import { YouTube } from 'components'
+import Image from 'next/image'
 import 'highlight.js/styles/atom-one-dark.css'
 
 const PostPage: NextPage<PostType> = ({ post }) => {
@@ -15,7 +16,7 @@ const PostPage: NextPage<PostType> = ({ post }) => {
         <title>{title}</title>
       </Head>
       <h1>{title}</h1>
-      <MdxComponent post={post} components={{ Image, YouTube }} />
+      <MDX post={post} components={{ Image, YouTube }} />
     </>
   )
 }
@@ -25,7 +26,7 @@ export default PostPage
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   // folder names can only contain: a-z, A-Z, 0-9, -
   const { slug } = params as { slug: string }
-  const post = await getMdxBundle(slug)
+  const post = await getPost(slug)
   return {
     props: { post },
   }

@@ -1,9 +1,5 @@
 import type { NextPage, GetStaticProps } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-// import styles from '../styles/Home.module.css'
-// import { Youtube } from 'components'
-import { getAllPost } from 'utils'
+import { getAllPosts } from 'utils'
 import { PostsType } from 'types'
 import { Articles } from 'components'
 
@@ -20,7 +16,7 @@ const HomePage: NextPage<PostsType> = ({ posts }) => {
 export default HomePage
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = (await getAllPost()).slice(0, 9)
+  const posts = (await getAllPosts()).slice(0, 9)
 
   return {
     props: { posts },

@@ -1,3 +1,3 @@
 export * from './youtube'
 export * from './articles'
-export * from './mdx'
+export * from './mdxRemote'
