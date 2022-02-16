@@ -68,8 +68,7 @@ export const getAllPosts = async (): Promise<Post[]> => {
 
 export const getAllTags = async (): Promise<string[]> => {
   const posts = await getAllPosts()
-  const _tags = posts.map((post: Post) => post.tags)
-  const tags = Array.from(new Set(..._tags))
-  console.log('tags', tags)
+  const _tags = new Set(posts.map((post: Post) => post.tags).flat())
+  const tags = Array.from(_tags)
   return tags
 }
