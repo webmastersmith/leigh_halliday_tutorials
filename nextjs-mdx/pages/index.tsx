@@ -7,7 +7,7 @@ import { getAllPost } from 'utils'
 import { PostsType } from 'types'
 import { Articles } from 'components'
 
-const Home: NextPage<PostsType> = ({ posts }) => {
+const HomePage: NextPage<PostsType> = ({ posts }) => {
   // return <Youtube id="J_0SBJMxmcw" />
   return (
     <div>
@@ -17,10 +17,9 @@ const Home: NextPage<PostsType> = ({ posts }) => {
   )
 }
 
-export default Home
+export default HomePage
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  // const { slug } = params as { slug: string }
+export const getStaticProps: GetStaticProps = async () => {
   const posts = (await getAllPost()).slice(0, 9)
 
   return {

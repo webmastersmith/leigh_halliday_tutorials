@@ -5,7 +5,7 @@ interface Props {
   id: string
 }
 
-export const Youtube: NextPage<Props> = ({ id }): JSX.Element => {
+export const YouTube: NextPage<Props> = ({ id }) => {
   return (
     <div className={styles.container}>
       <iframe

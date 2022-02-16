@@ -2,6 +2,9 @@ import path from 'path'
 import { bundleMDX } from 'mdx-bundler'
 import { Post } from 'types'
 import { uuid } from './util'
+import rehypeSlug from 'rehype-slug'
+import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeHighlight from 'rehype-highlight'
 
 const ROOT = process.cwd()
 const POSTS_PATH = path.join(ROOT, 'posts')
@@ -27,7 +30,11 @@ export const getMdxBundle = async (slug: string) => {
 
   // Add your remark and rehype plugins here
   const remarkPlugins: any = []
-  const rehypePlugins: any = []
+  const rehypePlugins: any = [
+    rehypeSlug,
+    [rehypeAutolinkHeadings, { behavior: 'wrap' }],
+    rehypeHighlight,
+  ]
 
   try {
     const post = await bundleMDX({
